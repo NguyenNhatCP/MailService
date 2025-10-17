@@ -25,15 +25,6 @@ export async function sendEmail({ to, subject, text, html }) {
     EMAIL_PASS: process.env.EMAIL_PASS ? "[OK]" : "[MISSING]",
   });
 
-  // ✅ Kiểm tra kết nối SMTP (đúng kiểu async)
-  try {
-    await transporter.verify();
-    console.log("✅ SMTP server ready to take messages");
-  } catch (err) {
-    console.error("❌ SMTP verify failed:", err);
-    throw err;
-  }
-
   // ✅ Gửi mail
   return transporter.sendMail({
     from: `"Apache" <${process.env.EMAIL_USER}>`,
