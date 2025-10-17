@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import { sendEmail } from "./services/mailer.js";
+import { sendEmail } from "../services/mailer.js";
 
 dotenv.config();
 const app = express();
@@ -19,13 +19,10 @@ app.post("/send-email", async (req, res) => {
     console.error("❌ Email error:", err);
     res.status(500).json({
       error: "Failed to send email",
-      message: err.message, // 👈 dòng này giúp bạn biết lỗi gì
-      stack: err.stack,
+      message: err.message,
     });
   }
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () =>
-  console.log(`📧 Email Service running at http://localhost:${PORT}`)
-);
+app.listen(PORT, () => console.log(`📧 Local server: http://localhost:${PORT}`));
