@@ -12,7 +12,6 @@ export async function handler(event) {
     }
 
     const info = await sendEmail({ to, subject, text, html });
-
     return {
       statusCode: 200,
       body: JSON.stringify({ success: true, messageId: info.messageId }),
